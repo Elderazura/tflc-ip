@@ -2,6 +2,12 @@
   "name": "themis-ip",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "@typescript-eslint/typescript-estree": "8.18.0",
+    "@typescript-eslint/parser": "8.18.0",
+    "@typescript-eslint/eslint-plugin": "8.18.0",
+    "@typescript-eslint/utils": "8.18.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
