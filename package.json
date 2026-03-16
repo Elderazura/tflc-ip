@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "overrides": {
+    "@types/node": "20.17.10",
     "@typescript-eslint/typescript-estree": "8.18.0",
     "@typescript-eslint/parser": "8.18.0",
     "@typescript-eslint/eslint-plugin": "8.18.0",
@@ -30,7 +31,7 @@
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "20.17.10",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
