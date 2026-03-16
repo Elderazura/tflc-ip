@@ -46,8 +46,18 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "marquee-strip": "marquee 40s linear infinite",
+        "icon-bounce": "iconBounce 0.5s ease-out",
+        "icon-float": "iconFloat 2s ease-in-out infinite",
       },
       keyframes: {
+        iconBounce: {
+          "0%, 100%": { transform: "translateY(0) scale(1)" },
+          "50%": { transform: "translateY(-4px) scale(1.05)" },
+        },
+        iconFloat: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-3px)" },
+        },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { getServiceIcon } from "@/components/service-icons";
 
 const serviceLinks = [
   { href: "/services/intellectual-property-services", label: "Intellectual Property Services" },
@@ -52,21 +53,27 @@ export function ServicesSlider() {
           WebkitOverflowScrolling: "touch",
         }}
       >
-        {serviceLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="min-w-[280px] max-w-[320px] flex-shrink-0 rounded-xl border border-white/10 bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-accent-gold/30 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-gold/30 md:min-w-[300px]"
-            style={{ scrollSnapAlign: "start" }}
-          >
-            <h3 className="font-heading font-semibold text-foreground">
-              {link.label}
-            </h3>
-            <span className="mt-2 inline-block text-sm text-accent-gold">
-              Learn more →
-            </span>
-          </Link>
-        ))}
+        {serviceLinks.map((link) => {
+          const Icon = getServiceIcon(link.href);
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group min-w-[280px] max-w-[320px] flex-shrink-0 rounded-xl border border-white/10 bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-accent-gold/30 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-gold/30 md:min-w-[300px]"
+              style={{ scrollSnapAlign: "start" }}
+            >
+              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg border border-accent-gold/30 bg-accent-gold/10 text-accent-gold animate-icon-float">
+                <Icon className="h-6 w-6" />
+              </span>
+              <h3 className="font-heading font-semibold text-foreground">
+                {link.label}
+              </h3>
+              <span className="mt-2 inline-block text-sm text-accent-gold">
+                Learn more →
+              </span>
+            </Link>
+          );
+        })}
       </div>
       {/* Navigation arrows - desktop */}
       <button

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { StatsBar } from "@/components/stats-bar";
 import { CtaBannerSection } from "@/components/cta-banner-section";
+import { getServiceIcon, getProcessIcon, getIndustryIcon } from "@/components/service-icons";
 
 const serviceLinks = [
   { href: "/services/intellectual-property-services", label: "Intellectual Property Services" },
@@ -74,22 +75,28 @@ export default function ServicesPage() {
             efficient, reliable, and strategic IP legal services.
           </p>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {serviceLinks.map((link) => (
-              <Card
-                key={link.href}
-                className="overflow-hidden transition-all hover:-translate-y-0.5 hover:border-accent-gold/30 hover:shadow-lg"
-              >
-                <CardHeader className="p-6">
-                  <Link
-                    href={link.href}
-                    className="font-heading font-semibold text-foreground transition-colors hover:text-accent-gold"
-                  >
-                    {link.label}
-                  </Link>
-                  <span className="mt-2 inline-block text-sm text-accent-gold">Learn more →</span>
-                </CardHeader>
-              </Card>
-            ))}
+            {serviceLinks.map((link) => {
+              const Icon = getServiceIcon(link.href);
+              return (
+                <Card
+                  key={link.href}
+                  className="group overflow-hidden transition-all hover:-translate-y-0.5 hover:border-accent-gold/30 hover:shadow-lg"
+                >
+                  <CardHeader className="p-6">
+                    <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg border border-accent-gold/30 bg-accent-gold/10 text-accent-gold animate-icon-float">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <Link
+                      href={link.href}
+                      className="font-heading font-semibold text-foreground transition-colors hover:text-accent-gold"
+                    >
+                      {link.label}
+                    </Link>
+                    <span className="mt-2 inline-block text-sm text-accent-gold">Learn more →</span>
+                  </CardHeader>
+                </Card>
+              );
+            })}
           </div>
           <div className="mt-10 text-center">
             <Button asChild>
@@ -122,22 +129,28 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((item) => (
-              <Card
-                key={item.step}
-                className="relative border-white/10 transition-all hover:border-accent-gold/20 hover:-translate-y-0.5"
-              >
-                <CardContent className="p-6">
-                  <span className="font-heading text-2xl font-bold text-accent-gold">
-                    {String(item.step).padStart(2, "0")}
-                  </span>
-                  <h3 className="font-heading mt-2 text-lg font-semibold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted">{item.text}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {processSteps.map((item) => {
+              const ProcessIcon = getProcessIcon(item.step);
+              return (
+                <Card
+                  key={item.step}
+                  className="group relative border-white/10 transition-all hover:border-accent-gold/20 hover:-translate-y-0.5"
+                >
+                  <CardContent className="p-6">
+                    <span className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-lg border border-accent-gold/30 bg-accent-gold/10 text-accent-gold">
+                      <ProcessIcon className="h-6 w-6" />
+                    </span>
+                    <span className="font-heading text-2xl font-bold text-accent-gold">
+                      {String(item.step).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-heading mt-2 text-lg font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted">{item.text}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -157,22 +170,28 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="mx-auto mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {industries.map((item) => (
-              <Card
-                key={item.name}
-                className="border-white/10 transition-all hover:border-accent-gold/20 hover:-translate-y-0.5"
-              >
-                <CardContent className="p-6">
-                  <h3 className="font-heading font-semibold text-foreground">
-                    {item.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted">{item.tagline}</p>
-                  <Button asChild variant="link" className="mt-3 p-0">
-                    <Link href="/contact-us">Relevant services →</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+            {industries.map((item, index) => {
+              const IndustryIcon = getIndustryIcon(index);
+              return (
+                <Card
+                  key={item.name}
+                  className="group border-white/10 transition-all hover:border-accent-gold/20 hover:-translate-y-0.5"
+                >
+                  <CardContent className="p-6">
+                    <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg border border-accent-gold/30 bg-accent-gold/10 text-accent-gold animate-icon-float">
+                      <IndustryIcon className="h-6 w-6" />
+                    </span>
+                    <h3 className="font-heading font-semibold text-foreground">
+                      {item.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">{item.tagline}</p>
+                    <Button asChild variant="link" className="mt-3 p-0">
+                      <Link href="/contact-us">Relevant services →</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
